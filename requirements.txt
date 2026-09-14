@@ -1,0 +1,39 @@
+# Voyage Analytics Production Layer Dependencies
+#
+# Recommended runtime: **Python 3.10 / 3.11** — the most stable, well-wheeled
+# ML versions. Python 3.13 triggers Windows ABI issues (torch c10.dll reload,
+# pyarrow source builds, skops<->xgboost serialization), so prefer 3.10/3.11.
+
+# Web framework
+flask>=3.0.3
+
+# Model loading
+joblib>=1.4.2
+xgboost>=2.0.3
+
+# Machine learning
+scikit-learn>=1.5.0
+
+# Validation
+pydantic>=2.7.4
+
+# Data handling
+pandas>=2.2.3
+
+# HTTP client (used by the Streamlit dashboard to call the API)
+requests>=2.32.3
+
+# Dashboard
+streamlit>=1.36.0
+
+# Testing
+pytest>=8.2.2
+pytest-cov>=5.0.0
+
+# Development
+python-dotenv>=1.0.1
+
+# Type checking
+mypy>=1.10.1
+
+matplotlib>=3.8.0

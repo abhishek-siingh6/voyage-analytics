@@ -1,0 +1,105 @@
+{
+  "hotels": {
+    "Hotel A": {
+      "place": "Florianopolis (SC)",
+      "price_per_day": 313.02
+    },
+    "Hotel AF": {
+      "place": "Sao Paulo (SP)",
+      "price_per_day": 139.1
+    },
+    "Hotel AU": {
+      "place": "Recife (PE)",
+      "price_per_day": 312.83
+    },
+    "Hotel BD": {
+      "place": "Natal (RN)",
+      "price_per_day": 242.88
+    },
+    "Hotel BP": {
+      "place": "Brasilia (DF)",
+      "price_per_day": 247.62
+    },
+    "Hotel BW": {
+      "place": "Campo Grande (MS)",
+      "price_per_day": 60.39
+    },
+    "Hotel CB": {
+      "place": "Rio de Janeiro (RJ)",
+      "price_per_day": 165.99
+    },
+    "Hotel K": {
+      "place": "Salvador (BH)",
+      "price_per_day": 263.41
+    },
+    "Hotel Z": {
+      "place": "Aracaju (SE)",
+      "price_per_day": 208.04
+    }
+  },
+  "places": [
+    "Aracaju (SE)",
+    "Brasilia (DF)",
+    "Campo Grande (MS)",
+    "Florianopolis (SC)",
+    "Natal (RN)",
+    "Recife (PE)",
+    "Rio de Janeiro (RJ)",
+    "Salvador (BH)",
+    "Sao Paulo (SP)"
+  ],
+  "company_preferences": {
+    "4You": {
+      "Hotel K": 0.1271,
+      "Hotel A": 0.1256,
+      "Hotel CB": 0.1244,
+      "Hotel BD": 0.1243,
+      "Hotel AF": 0.1242,
+      "Hotel BW": 0.1242,
+      "Hotel AU": 0.0846,
+      "Hotel Z": 0.0841,
+      "Hotel BP": 0.0814
+    },
+    "Acme Factory": {
+      "Hotel AF": 0.1284,
+      "Hotel Z": 0.1268,
+      "Hotel CB": 0.1252,
+      "Hotel BW": 0.1251,
+      "Hotel K": 0.1246,
+      "Hotel BD": 0.1237,
+      "Hotel BP": 0.1237,
+      "Hotel AU": 0.1225
+    },
+    "Monsters CYA": {
+      "Hotel AU": 0.133,
+      "Hotel AF": 0.1303,
+      "Hotel Z": 0.1271,
+      "Hotel BP": 0.1256,
+      "Hotel BD": 0.1236,
+      "Hotel K": 0.1223,
+      "Hotel CB": 0.1191,
+      "Hotel A": 0.1189
+    },
+    "Umbrella LTDA": {
+      "Hotel K": 0.1312,
+      "Hotel BD": 0.1283,
+      "Hotel AF": 0.127,
+      "Hotel Z": 0.127,
+      "Hotel CB": 0.1255,
+      "Hotel BP": 0.1249,
+      "Hotel BW": 0.119,
+      "Hotel AU": 0.1172
+    },
+    "Wonka Company": {
+      "Hotel BW": 0.133,
+      "Hotel A": 0.1288,
+      "Hotel CB": 0.1248,
+      "Hotel BP": 0.1229,
+      "Hotel AU": 0.1226,
+      "Hotel K": 0.1215,
+      "Hotel BD": 0.0904,
+      "Hotel AF": 0.0802,
+      "Hotel Z": 0.0758
+    }
+  }
+}

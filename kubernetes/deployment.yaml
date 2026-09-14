@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: voyage-analytics-api
+  namespace: voyage-analytics
+  labels:
+    app: voyage-analytics-api
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: voyage-analytics-api
+  template:
+    metadata:
+      labels:
+        app: voyage-analytics-api
+    spec:
+      containers:
+      - name: api
+        image: voyage-analytics-api:latest
+        ports:
+        - containerPort: 5000
+        envFrom:
+        - configMapRef:
+            name: voyage-analytics-config
+        livenessProbe:
+          httpGet:
+            path: /api/health
+            port: 5000
+          initialDelaySeconds: 15
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /api/health
+            port: 5000
+          initialDelaySeconds: 5
+          periodSeconds: 5
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "150m"
+          limits:
+            memory: "512Mi"
+            cpu: "400m"

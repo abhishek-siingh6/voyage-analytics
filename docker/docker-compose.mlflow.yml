@@ -1,0 +1,30 @@
+# Standalone MLflow tracking server for Voyage Analytics.
+#
+# Uses port 5001 on the host so it does not collide with the Flask API (5000).
+#
+# Start:
+#   docker compose -f docker/docker-compose.mlflow.yml up -d
+#
+# Then point MLFLOW_TRACKING_URI at http://localhost:5001.
+
+services:
+  mlflow:
+    image: ghcr.io/mlflow/mlflow:latest
+    container_name: voyage-mlflow
+    ports:
+      - "5001:5000"
+    volumes:
+      - mlflow_artifacts:/mlflow/artifacts
+      - mlflow_db:/mlflow
+    command: >
+      mlflow server
+      --host 0.0.0.0
+      --port 5000
+      --backend-store-uri sqlite:////mlflow/mlflow.db
+      --default-artifact-root /mlflow/artifacts
+    environment:
+      - MLFLOW_TRACKING_URI=http://localhost:5001
+
+volumes:
+  mlflow_artifacts:
+  mlflow_db:

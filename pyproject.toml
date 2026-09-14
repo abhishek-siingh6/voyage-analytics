@@ -1,0 +1,54 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "voyage-analytics"
+version = "2.0.0"
+description = "MLOps production layer for Voyage Analytics (flight price, gender, hotel recommendation)"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "flask>=3.0.0",
+    "joblib>=1.4.0",
+    "pydantic>=2.0.0",
+    "scikit-learn>=1.5.0",
+    "xgboost>=2.0.0",
+    "pandas>=2.0.0",
+]
+
+[project.optional-dependencies]
+dashboard = [
+    "streamlit>=1.36.0",
+    "requests>=2.32.0",
+]
+mlops = [
+    "mlflow>=2.15.0",
+]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+    "flake8>=7.0.0",
+    "black>=23.0.0",
+    "mypy>=1.0.0",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = "test_*.py"
+addopts = "-v --cov=src --cov=api --cov-report=term-missing"
+
+[tool.mypy]
+python_version = "3.9"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+
+[tool.black]
+line-length = 88
+target-version = ["py39"]
+
+[tool.flake8]
+max-line-length = 88
+extend-ignore = ["E203"]

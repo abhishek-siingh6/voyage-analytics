@@ -1,0 +1,11 @@
+{
+  "model_name": "voyage_recommendation",
+  "model_version": "1.0",
+  "task": "recommendation",
+  "framework": "content-based",
+  "hotels_data_path": "artifacts/data/hotels.csv",
+  "users_data_path": "artifacts/data/users.csv",
+  "n_hotels": 9,
+  "n_places": 9,
+  "n_companies": 5
+}

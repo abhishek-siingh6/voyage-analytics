@@ -1,0 +1,22 @@
+# Development dependencies
+-r requirements.txt
+
+# Testing
+pytest==8.2.2
+pytest-cov==5.0.0
+
+# Linting
+flake8==7.0.0
+black==23.11.0
+
+# Type checking
+mypy==1.10.1
+
+# Development server
+werkzeug==3.0.3
+
+# MLflow tracking (model registry / experiment tracking)
+# Not required at runtime — only for the tracking scripts.
+# 2.15.x is incompatible with Python 3.13 (it pins pyarrow<16 which has no
+# cp313 Windows wheel); use 3.x which supports newer pyarrow/Python 3.13.
+mlflow==3.15.2

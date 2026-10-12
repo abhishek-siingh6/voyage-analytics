@@ -2,6 +2,11 @@
 
 **Integrating MLOps in Travel — Flight Price · Gender · Hotel Recommendation**
 
+[![Deploy to GitHub Pages](https://github.com/abhishek-siingh6/voyage-analytics/actions/workflows/pages.yml/badge.svg)](https://github.com/abhishek-siingh6/voyage-analytics/actions/workflows/pages.yml)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-GitHub%20Pages-2f80ff?style=flat&logo=github)](https://abhishek-siingh6.github.io/voyage-analytics/)
+
+🌐 **Live Web Application**: [https://abhishek-siingh6.github.io/voyage-analytics/](https://abhishek-siingh6.github.io/voyage-analytics/)
+
 Voyage Analytics is an MLOps capstone that productionizes three ML services for
 a travel platform. It trains models from the `flights.csv`, `hotels.csv` and
 `users.csv` datasets (from the travel_capstone dataset), exposes them through a

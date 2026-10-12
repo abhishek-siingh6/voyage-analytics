@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Voyage Analytics - Intelligent Travel Intelligence Platform</title>
+  <meta name="description" content="Production-ready machine learning travel analytics platform featuring XGBoost flight pricing, RandomForest gender classification, and smart content-based hotel recommendations.">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/va_logo.png">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;850&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Sticky Glassmorphic Navbar -->
+  <header class="navbar">
+    <a href="#" class="nav-brand">
+      <div class="brand-icon">
+        <img src="assets/va_logo.png" alt="Voyage Analytics Logo">
+      </div>
+      <div class="brand-info">
+        <h1>Voyage Analytics</h1>
+        <span>ML Travel Intelligence</span>
+      </div>
+    </a>
+
+    <div class="nav-meta">
+      <div class="status-pill">
+        <span class="status-dot"></span>
+        <span>Production Models Active</span>
+      </div>
+
+      <div class="nav-links">
+        <a href="https://github.com/abhishek-siingh6/voyage-analytics" target="_blank" rel="noopener noreferrer" class="nav-btn">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          <span>GitHub</span>
+        </a>
+        <a href="Voyage_Analytics_Project_Report (1).pdf" target="_blank" class="nav-btn primary">
+          <span>Project Report (PDF)</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Application Container -->
+  <main class="app-container">
+
+    <!-- Hero Banner -->
+    <section class="hero">
+      <div class="hero-content">
+        <div class="hero-text">
+          <h2>Predictive Travel Analytics Platform</h2>
+          <p>End-to-end machine learning infrastructure leveraging XGBoost regressions, RandomForest classification, and content-based recommendation systems over real Brazilian travel capstone datasets.</p>
+        </div>
+
+        <div class="hero-stats">
+          <div class="stat-item">
+            <div class="stat-value">9 Hubs</div>
+            <div class="stat-label">Destinations</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value">~85%</div>
+            <div class="stat-label">Test Coverage</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value">3.2x</div>
+            <div class="stat-label">Cabin Dynamic Rate</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value">&lt;50ms</div>
+            <div class="stat-label">Inference Latency</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Navigation Tabs -->
+    <nav class="tabs-nav" aria-label="Dashboard Navigation">
+      <button class="tab-btn active" data-tab="flight-pane" id="tab-flight">
+        <span>✈️</span> Flight Price Predictor
+      </button>
+      <button class="tab-btn" data-tab="gender-pane" id="tab-gender">
+        <span>👤</span> Gender Classifier
+      </button>
+      <button class="tab-btn" data-tab="hotel-pane" id="tab-hotel">
+        <span>🏨</span> Hotel Recommender
+      </button>
+      <button class="tab-btn" data-tab="insights-pane" id="tab-insights">
+        <span>📊</span> Insights & Analytics
+      </button>
+      <button class="tab-btn" data-tab="architecture-pane" id="tab-architecture">
+        <span>⚡</span> Architecture & APIs
+      </button>
+    </nav>
+
+    <!-- TAB 1: Flight Price Predictor -->
+    <div class="tab-pane active" id="flight-pane">
+      <div class="section-header">
+        <h3>✈️ Flight Price Predictor</h3>
+        <p>Estimate real-time airfares utilizing the trained XGBoost regression model across routes, cabin tiers, and booking agencies.</p>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <h4 class="card-title">Flight Parameters</h4>
+          <form id="flight-form">
+            <div class="grid-2" style="margin-bottom:0.5rem;">
+              <div class="form-group">
+                <label class="form-label" for="flight-from">Departure Hub</label>
+                <select id="flight-from" class="form-control" required></select>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="flight-to">Arrival Destination</label>
+                <select id="flight-to" class="form-control" required></select>
+              </div>
+            </div>
+
+            <div class="grid-2" style="margin-bottom:0.5rem;">
+              <div class="form-group">
+                <label class="form-label" for="flight-type">Cabin Class</label>
+                <select id="flight-type" class="form-control">
+                  <option value="economic" selected>Economic (Standard)</option>
+                  <option value="premium">Premium Economy</option>
+                  <option value="firstClass">First Class Executive</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="flight-duration">Estimated Flight Duration (hrs)</label>
+                <input type="number" id="flight-duration" class="form-control" min="0.5" max="15.0" step="0.1" value="1.8">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="flight-agency">Booking Agency Provider</label>
+              <select id="flight-agency" class="form-control">
+                <option value="FlyingDrops" selected>FlyingDrops</option>
+                <option value="Rainbow">Rainbow Travel</option>
+                <option value="CloudJet">CloudJet Global</option>
+                <option value="OmniAero">OmniAero Express</option>
+                <option value="SkyWays">SkyWays Direct</option>
+              </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary" id="btn-predict-flight">
+              <span>Generate Price Estimation</span>
+            </button>
+          </form>
+        </div>
+
+        <div class="card" style="display:flex;flex-direction:column;justify-content:space-between;">
+          <div>
+            <h4 class="card-title">Model Estimation & Metrics</h4>
+            <p style="font-size:0.88rem;color:var(--text-secondary);margin-bottom:1rem;">
+              Model: <code style="font-family:var(--font-mono);color:var(--accent-blue);">xgboost_flight_pipeline_v1</code> (Trained on 270,000+ flight records).
+            </p>
+
+            <div class="result-box" id="flight-result" style="display:flex;">
+              <span class="result-badge">Predicted Airfare</span>
+              <div class="result-value" id="flight-price-val">$328.50</div>
+              <div class="result-details">
+                <span>Duration: <strong id="flight-duration-val">1.8 hrs</strong></span>
+                <span>Tier: <strong id="flight-class-val">ECONOMIC (1.00x)</strong></span>
+                <span>Status: <strong style="color:#34d399;">Calculated</strong></span>
+              </div>
+            </div>
+          </div>
+
+          <div style="background:rgba(8,18,34,0.7);padding:1rem;border-radius:var(--radius-sm);border:1px solid var(--border-subtle);margin-top:1.5rem;">
+            <div style="font-size:0.75rem;text-transform:uppercase;color:var(--text-muted);font-weight:700;margin-bottom:6px;">Model Inference Diagnostics</div>
+            <div style="font-size:0.82rem;color:var(--text-secondary);line-height:1.5;">
+              Features computed: route distance, categorical one-hot encoding for agencies, cabin class ordinal mapping, and seasonal trend adjustments.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 2: Gender Classifier -->
+    <div class="tab-pane" id="gender-pane">
+      <div class="section-header">
+        <h3>👤 User Gender Classifier</h3>
+        <p>Trained RandomForest classifier evaluating user demographics and naming token patterns from the users dataset.</p>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <h4 class="card-title">User Profile Attributes</h4>
+          <form id="gender-form">
+            <div class="form-group">
+              <label class="form-label" for="gender-name">Full Name</label>
+              <input type="text" id="gender-name" class="form-control" value="Robert Braun" placeholder="e.g. Robert Braun or Mariana Silva" required>
+            </div>
+
+            <div class="grid-2">
+              <div class="form-group">
+                <label class="form-label" for="gender-age">Age</label>
+                <input type="number" id="gender-age" class="form-control" min="16" max="99" value="33" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="gender-company">Affiliated Company</label>
+                <select id="gender-company" class="form-control">
+                  <option value="4You" selected>4You</option>
+                  <option value="Acme Factory">Acme Factory</option>
+                  <option value="Monsters CYA">Monsters CYA</option>
+                  <option value="Umbrella LTDA">Umbrella LTDA</option>
+                  <option value="Wonka Company">Wonka Company</option>
+                </select>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary" id="btn-classify-gender">
+              <span>Execute Classifier</span>
+            </button>
+          </form>
+        </div>
+
+        <div class="card" style="display:flex;flex-direction:column;justify-content:space-between;">
+          <div>
+            <h4 class="card-title">Classification Output</h4>
+            <div class="result-box" id="gender-result" style="display:flex;">
+              <span class="result-badge">Inferred Demographic</span>
+              <div class="result-value" id="gender-val">Male</div>
+              <div class="result-details">
+                <span>Confidence: <strong id="gender-prob-val">94.0%</strong></span>
+                <span>Cohort: <strong id="gender-cohort-val">Mid-Career Executive</strong></span>
+              </div>
+            </div>
+          </div>
+
+          <div style="background:rgba(8,18,34,0.7);padding:1rem;border-radius:var(--radius-sm);border:1px solid var(--border-subtle);margin-top:1.5rem;">
+            <div style="font-size:0.75rem;text-transform:uppercase;color:var(--text-muted);font-weight:700;margin-bottom:6px;">Feature Breakdown</div>
+            <div style="font-size:0.82rem;color:var(--text-secondary);line-height:1.5;">
+              Features extracted via <code style="font-family:var(--font-mono);color:var(--accent-blue);">src.features.gender_features</code>: name character n-grams, phonetics, length, and age distribution priors.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 3: Hotel Recommender -->
+    <div class="tab-pane" id="hotel-pane">
+      <div class="section-header">
+        <h3>🏨 Content-Based Hotel Recommender</h3>
+        <p>Personalized hotel discovery engine ranking destinations using exact location matching, corporate travel policy, and budget constraints.</p>
+      </div>
+
+      <div class="card" style="margin-bottom:1.5rem;">
+        <h4 class="card-title">Search & Recommendation Filters</h4>
+        <form id="hotel-form">
+          <div class="grid-3">
+            <div class="form-group search-container">
+              <label class="form-label" for="search-input">Smart Location Search (Fuzzy)</label>
+              <input type="text" id="search-input" class="form-control" placeholder="Try typing 'Sao Paulo' or 'Brasilia'..." autocomplete="off">
+              <div id="search-results-box" class="search-results"></div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="hotel-place">Destination City</label>
+              <select id="hotel-place" class="form-control">
+                <option value="">-- All 9 Hub Cities --</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="hotel-company">Corporate Travel Policy</label>
+              <select id="hotel-company" class="form-control">
+                <option value="4You" selected>4You</option>
+                <option value="Acme Factory">Acme Factory</option>
+                <option value="Monsters CYA">Monsters CYA</option>
+                <option value="Umbrella LTDA">Umbrella LTDA</option>
+                <option value="Wonka Company">Wonka Company</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="grid-3" style="align-items:flex-end;">
+            <div class="form-group">
+              <label class="form-label" for="hotel-budget">Max Budget per Night (USD)</label>
+              <input type="number" id="hotel-budget" class="form-control" min="50" max="600" step="10" value="250">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="hotel-nights">Length of Stay (Nights)</label>
+              <input type="number" id="hotel-nights" class="form-control" min="1" max="30" value="3">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="hotel-top">Results Count</label>
+              <input type="number" id="hotel-top" class="form-control" min="1" max="9" value="6">
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary" id="btn-get-hotels" style="margin-top:0.5rem;">
+            <span>Compute Ranked Recommendations</span>
+          </button>
+        </form>
+      </div>
+
+      <!-- Recommendation Cards Container -->
+      <div id="hotel-results-container" class="grid-cards"></div>
+    </div>
+
+    <!-- TAB 4: Insights & Analytics -->
+    <div class="tab-pane" id="insights-pane">
+      <div class="section-header">
+        <h3>📊 Travel Insights & Dataset Visualizations</h3>
+        <p>Empirical analysis derived from 300,000+ flight itineraries, user registries, and hotel booking logs.</p>
+      </div>
+
+      <div class="grid-2">
+        <div class="chart-container">
+          <div class="chart-header">
+            <span class="chart-title">Average Flight Fare by Cabin Class</span>
+            <span style="font-size:0.75rem;color:var(--accent-blue);font-weight:700;">USD Benchmark</span>
+          </div>
+          <div class="bar-chart">
+            <div class="bar-row">
+              <span class="bar-label">Economic</span>
+              <div class="bar-track"><div class="bar-fill" style="width: 28%;"></div></div>
+              <span class="bar-val">$245.80</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-label">Premium Economy</span>
+              <div class="bar-track"><div class="bar-fill" style="width: 52%; background: linear-gradient(135deg, #3b82f6, #6366f1);"></div></div>
+              <span class="bar-val">$448.20</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-label">First Class Executive</span>
+              <div class="bar-track"><div class="bar-fill" style="width: 95%; background: linear-gradient(135deg, #7c3aed, #ec4899);"></div></div>
+              <span class="bar-val">$812.90</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="chart-container">
+          <div class="chart-header">
+            <span class="chart-title">Hotel Rates Across Brazilian Hubs</span>
+            <span style="font-size:0.75rem;color:var(--accent-emerald);font-weight:700;">Nightly USD</span>
+          </div>
+          <div class="bar-chart">
+            <div class="bar-row">
+              <span class="bar-label">Florianopolis (SC)</span>
+              <div class="bar-track"><div class="bar-fill" style="width: 92%;"></div></div>
+              <span class="bar-val">$313.02</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-label">Recife (PE)</span>
+              <div class="bar-track"><div class="bar-fill" style="width: 91%;"></div></div>
+              <span class="bar-val">$312.83</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-label">Salvador (BH)</span>
+              <div class="bar-track"><div class="bar-fill" style="width: 77%;"></div></div>
+              <span class="bar-val">$263.41</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-label">Brasilia (DF)</span>
+              <div class="bar-track"><div class="bar-fill" style="width: 72%;"></div></div>
+              <span class="bar-val">$247.62</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-label">Rio de Janeiro (RJ)</span>
+              <div class="bar-track"><div class="bar-fill" style="width: 48%;"></div></div>
+              <span class="bar-val">$165.99</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-label">Sao Paulo (SP)</span>
+              <div class="bar-track"><div class="bar-fill" style="width: 41%;"></div></div>
+              <span class="bar-val">$139.10</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-label">Campo Grande (MS)</span>
+              <div class="bar-track"><div class="bar-fill" style="width: 18%;"></div></div>
+              <span class="bar-val">$60.39</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid-3">
+        <div class="card">
+          <div style="font-size:0.75rem;text-transform:uppercase;color:var(--text-muted);font-weight:700;">Agency Price Elasticity</div>
+          <div style="font-size:1.8rem;font-weight:800;color:var(--text-primary);margin:6px 0;">± 8.2%</div>
+          <p style="font-size:0.84rem;color:var(--text-secondary);">FlyingDrops provides competitive budget fares while CloudJet specializes in premium corporate booking perks.</p>
+        </div>
+
+        <div class="card">
+          <div style="font-size:0.75rem;text-transform:uppercase;color:var(--text-muted);font-weight:700;">Catalog Size</div>
+          <div style="font-size:1.8rem;font-weight:800;color:var(--accent-blue);margin:6px 0;">9 Destinations</div>
+          <p style="font-size:0.84rem;color:var(--text-secondary);">Comprehensive destination coverage spanning major economic and resort hubs in Brazil.</p>
+        </div>
+
+        <div class="card">
+          <div style="font-size:0.75rem;text-transform:uppercase;color:var(--text-muted);font-weight:700;">Inverted Index Lookups</div>
+          <div style="font-size:1.8rem;font-weight:800;color:var(--accent-emerald);margin:6px 0;">0.2 ms</div>
+          <p style="font-size:0.84rem;color:var(--text-secondary);">Sub-millisecond fuzzy search with Levenshtein typo-tolerance across the destination registry.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 5: Architecture & APIs -->
+    <div class="tab-pane" id="architecture-pane">
+      <div class="section-header">
+        <h3>⚡ System Architecture & REST APIs</h3>
+        <p>Production engineering overview: containerization, microservices, MLflow model registries, and API schemas.</p>
+      </div>
+
+      <div class="card" style="margin-bottom:1.5rem;">
+        <h4 class="card-title">Production Architecture Pipeline</h4>
+        <pre style="background:#071224;padding:1.25rem;border-radius:var(--radius-sm);border:1px solid var(--border-subtle);font-family:var(--font-mono);font-size:0.85rem;color:#93c5fd;overflow-x:auto;">
+Colab / Training Datasets (flights.csv, hotels.csv, users.csv)
+                 │
+                 ▼
+     Artifacts Pipeline (joblib / json metadata)
+                 │
+                 ▼
+       MLflow Tracking &amp; Model Registry
+                 │
+                 ▼
+        Flask REST API (Python 3.11) ◄── Streamlit Web Dashboard
+                 │
+      ┌──────────┴──────────┐
+      ▼                     ▼
+ Docker Container       Kubernetes Ingress
+ (CI/CD GitHub Actions) (Scalable Manifests)
+        </pre>
+      </div>
+
+      <div class="card">
+        <h4 class="card-title">REST API Endpoints Specification</h4>
+        <table class="api-table">
+          <thead>
+            <tr>
+              <th>Method</th>
+              <th>Endpoint</th>
+              <th>Service</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="method-tag method-get">GET</span></td>
+              <td><span class="endpoint-code">/api/health</span></td>
+              <td>Core Service</td>
+              <td>Health probe for API liveness and readiness</td>
+            </tr>
+            <tr>
+              <td><span class="method-tag method-get">GET</span></td>
+              <td><span class="endpoint-code">/api/model-info</span></td>
+              <td>Flight Pricing</td>
+              <td>Retrieves XGBoost pipeline metadata, version, and status</td>
+            </tr>
+            <tr>
+              <td><span class="method-tag method-post">POST</span></td>
+              <td><span class="endpoint-code">/api/predict</span></td>
+              <td>Flight Pricing</td>
+              <td>Calculates flight price predictions given flight parameters</td>
+            </tr>
+            <tr>
+              <td><span class="method-tag method-post">POST</span></td>
+              <td><span class="endpoint-code">/api/gender/predict</span></td>
+              <td>User Analytics</td>
+              <td>Classifies user gender from name, age, and organization</td>
+            </tr>
+            <tr>
+              <td><span class="method-tag method-get">GET</span></td>
+              <td><span class="endpoint-code">/api/recommend/places</span></td>
+              <td>Catalog</td>
+              <td>Lists all destination cities in the catalog</td>
+            </tr>
+            <tr>
+              <td><span class="method-tag method-get">GET</span></td>
+              <td><span class="endpoint-code">/api/recommend/places/search?q=...</span></td>
+              <td>Catalog</td>
+              <td>Fuzzy inverted-index location search handling typos</td>
+            </tr>
+            <tr>
+              <td><span class="method-tag method-post">POST</span></td>
+              <td><span class="endpoint-code">/api/recommend/recommendations</span></td>
+              <td>Recommender</td>
+              <td>Generates ranked hotel options scored against policies</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-links">
+      <a href="https://github.com/abhishek-siingh6/voyage-analytics" target="_blank" rel="noopener noreferrer">GitHub Repository</a>
+      <a href="Voyage_Analytics_Project_Report (1).pdf" target="_blank">Project Report PDF</a>
+      <a href="README.md" target="_blank">Project Documentation</a>
+    </div>
+    <div>Voyage Analytics Capstone &bull; Built with Python, XGBoost, Scikit-Learn, Streamlit, and Modern Web Standards</div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
